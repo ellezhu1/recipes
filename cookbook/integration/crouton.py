@@ -32,6 +32,28 @@ class Crouton(Integration):
 
         # FIXME: add category and tags as keywords
 
+        # FIXME: add ingredients 
+
+        # FIXME: add "steps" as recipe directions
+
+        # FIXME: add nutritional info - also accept the misspelling "neutritionalInfo"
+        if 'nutritionalInfo' in recipe_json or 'neutritionalInfo' in recipe_json:
+            nutrition = {}
+            try:
+                if 'calories' in recipe_json['nutrition']:
+                    nutrition['calories'] = int(re.search(r'\d+', recipe_json['nutrition']['calories']).group())
+                if 'proteinContent' in recipe_json['nutrition']:
+                    nutrition['proteins'] = int(re.search(r'\d+', recipe_json['nutrition']['proteinContent']).group())
+                if 'fatContent' in recipe_json['nutrition']:
+                    nutrition['fats'] = int(re.search(r'\d+', recipe_json['nutrition']['fatContent']).group())
+                if 'carbohydrateContent' in recipe_json['nutrition']:
+                    nutrition['carbohydrates'] = int(re.search(r'\d+', recipe_json['nutrition']['carbohydrateContent']).group())
+
+                if nutrition != {}:
+                    recipe.nutrition = NutritionInformation.objects.create(**nutrition, space=self.request.space)
+                    recipe.save()
+            except Exception:
+                pass
 
         if recipe_json.get("images", None):
             try:
@@ -39,11 +61,4 @@ class Crouton(Integration):
             except Exception:
                 pass
 
-
-
-
-
-
-
-
-        return super().get_recipe_from_file(file)
+        return recipe

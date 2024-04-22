@@ -88,13 +88,14 @@ class ImportExportBase(forms.Form):
     COPYMETHAT = 'COPYMETHAT'
     COOKMATE = 'COOKMATE'
     REZEPTSUITEDE = 'REZEPTSUITEDE'
+    CROUTON = 'CROUTON'
     PDF = 'PDF'
 
     type = forms.ChoiceField(choices=((DEFAULT, _('Default')), (PAPRIKA, 'Paprika'), (NEXTCLOUD, 'Nextcloud Cookbook'), (MEALIE, 'Mealie'), (CHOWDOWN, 'Chowdown'),
                                       (SAFFRON, 'Saffron'), (CHEFTAP, 'ChefTap'), (PEPPERPLATE, 'Pepperplate'), (RECETTETEK, 'RecetteTek'), (RECIPESAGE, 'Recipe Sage'),
                                       (DOMESTICA, 'Domestica'), (MEALMASTER, 'MealMaster'), (REZKONV, 'RezKonv'), (OPENEATS, 'Openeats'), (RECIPEKEEPER, 'Recipe Keeper'),
                                       (PLANTOEAT, 'Plantoeat'), (COOKBOOKAPP, 'CookBookApp'), (COPYMETHAT, 'CopyMeThat'), (PDF, 'PDF'), (MELARECIPES, 'Melarecipes'),
-                                      (COOKMATE, 'Cookmate'), (REZEPTSUITEDE, 'Recipesuite.de')))
+                                      (COOKMATE, 'Cookmate'), (REZEPTSUITEDE, 'Recipesuite.de'), (CROUTON, 'Crouton')))
 
 
 class MultipleFileInput(forms.ClearableFileInput):
